@@ -1,0 +1,26 @@
+server:
+  port: 10089
+spring:
+  application:
+    name: crm-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+zuul:
+  prefix: /api
+#  routes:
+#    crm-systemset: /crm-systemset/**
+#Roin超时时间，熔断器
+ribbon:
+  ConnectionTimeout: 1000 #连接超时时间,超时触发熔断器
+  ReadTimeout: 3500 #通信超时时间
+  MaxAutoRetriesNextServer: 0 #同一台服务器不同实例的重复次数
+  MaxAtuoRetries: 0 #同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 500 #熔断超时时长 5000ms
