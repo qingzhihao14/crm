@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>club.qinzh</groupId>
-    <artifactId>crm-gateway</artifactId>
+    <artifactId>crm-auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>crm-gateway</name>
+    <name>crm-auth</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -21,29 +21,28 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-            <version>2.2.1.RELEASE</version>
+            <groupId>club.qinzh</groupId>
+            <artifactId>crm-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
-<!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>2.2.2.RELEASE</version>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
             <version>2.2.0.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>club.qinzh</groupId>
-            <artifactId>crm-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.9.1.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -55,16 +54,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>2.2.2.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>com.spring4all</groupId>
-            <artifactId>swagger-spring-boot-starter</artifactId>
-            <version>1.9.1.RELEASE</version>
         </dependency>
     </dependencies>
 
