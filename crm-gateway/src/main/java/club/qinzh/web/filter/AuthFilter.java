@@ -32,21 +32,26 @@ public class AuthFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         RequestContext requestContext = RequestContext.getCurrentContext();
-        HttpServletRequest request = requestContext.getRequest();
-        if(request.getRequestURI().contains("/crm-auth")|| request.getRequestURI().contains("/v2/api-docs")){
-            return null;
-        }
-        String token = request.getHeader(JwtTokenUtils.TOKEN_HEADER);
-        if(StringUtils.isBlank((token))){
-            errorResponse(requestContext,ExceptionEnums.TOKEN_ERROR);
-        }else{
-            String username = JwtTokenUtils.getUsername(token);
-            String redisToken = redisTemplate.opsForValue().get(username);
-            if(token.equals(redisToken) && !JwtTokenUtils.isExpiration(token)){
+        try {
+            HttpServletRequest request = requestContext.getRequest();
+            String uri= request.getRequestURI();
+            if(uri.contains("/crm-auth")|| uri.contains("/v2/api-docs")){
                 return null;
-            }else {
-                errorResponse(requestContext,ExceptionEnums.TOKEN_ERROR);
             }
+            String token = request.getHeader(JwtTokenUtils.TOKEN_HEADER);
+            if(StringUtils.isBlank((token))){
+                errorResponse(requestContext,ExceptionEnums.TOKEN_ERROR);
+            }else{
+                String username = JwtTokenUtils.getUsername(token);
+                String redisToken = redisTemplate.opsForValue().get(username);
+                if(token.equals(redisToken) && !JwtTokenUtils.isExpiration(token)){
+                    return null;
+                }else {
+                    errorResponse(requestContext,ExceptionEnums.TOKEN_ERROR);
+                }
+            }
+        } catch (Exception e) {
+            errorResponse(requestContext,ExceptionEnums.TOKEN_ERROR);
         }
         return null;
     }
