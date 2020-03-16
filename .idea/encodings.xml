@@ -9,5 +9,6 @@
     <file url="file://$PROJECT_DIR$/crm-systemset" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crm-systemset/crm-systemset-inerface" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crm-systemset/crm-systemset-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crm-systemset/src/main/resources/application.yml" charset="GBK" />
   </component>
 </project>

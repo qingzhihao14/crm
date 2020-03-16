@@ -8,6 +8,8 @@ spring:
     url: jdbc:mysql://101.132.152.90:3306/crm?useunicode=true;&characterEncoding=utf8
     username: crm
     password: 123
+    hikari:
+      max-lifetime: 30000
 eureka:
   client:
     service-url:

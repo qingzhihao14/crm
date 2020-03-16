@@ -1,10 +1,8 @@
 package club.qinzh.service;
 
+
 import club.qinzh.bean.User;
-import club.qinzh.bean.UserExample;
-import club.qinzh.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import club.qinzh.bean.extend.UserExtend;
 
 import java.util.List;
 
@@ -14,19 +12,15 @@ import java.util.List;
  * @Time: 9:27
  * @Description:
  */
-@Service
-public class UserService {
-    @Autowired
-    private UserMapper userMapper;
+public interface UserService {
 
-    public User findByNameAndPassword(String username,String password){
-        UserExample example = new UserExample();
-        example.createCriteria().andUsrNameEqualTo(username)
-                                .andUsrPasswordEqualTo(password);
-        List<User> users = userMapper.selectByExample(example);
-        if(users != null && users.size()>0){
-            return users.get(0);
-        }
-        return null;
-    }
+    User findByNameAndPassword(String username,String password);
+
+    User findById(Long id);
+
+    List<User> findAllUser();
+    List<UserExtend> findAllUserwithRole();
+    void saveOrUpadte(User user);
+
+    void deleteById(Long id);
 }

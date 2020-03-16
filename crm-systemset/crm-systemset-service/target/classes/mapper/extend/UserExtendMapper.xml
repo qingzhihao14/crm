@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.qinzh.mapper.extend.UserExtendMapper">
+  <select id="selectAllWithOther" resultMap="UserExtendResultMap">
+      SELECT *
+      FROM sys_user
+    </select>
+  <resultMap id="UserExtendResultMap"
+             extends="club.qinzh.mapper.UserMapper.BaseResultMap"
+             type="club.qinzh.bean.extend.UserExtend">
+
+    <association property="role"
+                 javaType="club.qinzh.bean.Role"
+                 column="usr_role_id"
+                 select="club.qinzh.mapper.RoleMapper.selectByPrimaryKey"></association>
+  </resultMap>
+</mapper>
